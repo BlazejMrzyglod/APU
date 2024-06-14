@@ -40,7 +40,7 @@ ceny_ocen
 Macbooki <- rbind(Macbooki, data.frame(nazwa="MacBook Air 2024", ekran='13,6"', pamiec_RAM=8,dysk=512,cena=7149, liczba_opinii=0, ocena="brak"),data.frame(nazwa="MacBook Air M1", ekran='13,3"', pamiec_RAM=8,dysk=256,cena=5049, liczba_opinii=409, ocena=5),data.frame(nazwa="MacBook Air 13,3", ekran='13,3"', pamiec_RAM=8,dysk=256,cena=5399, liczba_opinii=262, ocena=5),data.frame(nazwa="MacBook Pro 2021", ekran='14,2"', pamiec_RAM=16,dysk=1024,cena=9999, liczba_opinii=10, ocena=5))
 plot(Macbooki$ocena)
 pie(table(Macbooki$ocena))
-status_opinii = c("mniej niż 50 opinii", "mniej niż 50 opinii", "nie ma", "50-100 opinii", "więcej niż 100 opinii", "nie ma", "50-100 opinii", "nie ma", "mniej niż 50 opinii", "nie ma", "więcej niż 100 opinii", "nie ma", "więcej niż 100 opinii", "więcej niż 100 opinii","mniej niż 50 opinii")
+status_opinii = c("mniej niz 50 opinii", "mniej niz 50 opinii", "nie ma", "50-100 opinii", "wiecej niz 100 opinii", "nie ma", "50-100 opinii", "nie ma", "mniej niz 50 opinii", "nie ma", "wiecej niz 100 opinii", "nie ma", "wiecej niz 100 opinii", "wiecej niz 100 opinii","mniej niz 50 opinii")
 factor(status_opinii)
 Macbooki <- cbind(Macbooki, status_opinii)
 pie(table(Macbooki$status_opinii))

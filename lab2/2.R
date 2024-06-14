@@ -1,0 +1,10 @@
+library(ahp)
+macAhp <- Load("macbooks.ahp")
+library(data.tree)
+Calculate(macAhp)
+Analyze(macAhp)
+AnalyzeTable(macAhp)
+print(macAhp)
+GetGraph(macAhp)
+Visualize(macAhp)
+

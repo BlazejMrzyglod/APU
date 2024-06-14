@@ -1,0 +1,94 @@
+Version: 2.0
+Alternatives: &alternatives
+  Apple MacBook Air 1:
+    Ekran: 13.6
+    Ram: 8
+    Dysk: 256
+    Cena: 4999
+    Ocena: 5
+  Apple MacBook Pro 2023 2:
+    Ekran: 14.2
+    Ram: 18
+    Dysk: 512
+    Cena: 10199
+    Ocena: 4
+  Apple MacBook Air 2024 3:
+    Ekran: 15.3
+    Ram: 8
+    Dysk: 512
+    Cena: 8199
+    Ocena: 4.5
+  Apple MacBook Air M1 4:
+    Ekran: 13.3
+    Ram: 8
+    Dysk: 256
+    Cena: 4579
+    Ocena: 5
+  Apple MacBook Air M1 5:
+    Ekran: 13.3
+    Ram: 16
+    Dysk: 256
+    Cena: 5699
+    Ocena: 5
+  Apple MacBook Air 2024 6:
+    Ekran: 13.6
+    Ram: 8
+    Dysk: 256
+    Cena: 5999
+    Ocena: 4
+  Apple MacBook Air M1 7:
+    Ekran: 13.3
+    Ram: 8
+    Dysk: 256
+    Cena: 4999
+    Ocena: 3
+  Apple MacBook Air 2024 8:
+    Ekran: 13.6
+    Ram: 8
+    Dysk: 256
+    Cena: 5999
+    Ocena: 4.5
+  Apple MacBook Air 9:
+    Ekran: 13.6
+    Ram: 16
+    Dysk: 256
+    Cena: 6349
+    Ocena: 5
+  Apple MacBook Air 2024 10:
+    Ekran: 13.6
+    Ram: 8
+    Dysk: 256
+    Cena: 5999
+    Ocena: 3.5
+Goal:
+  name: Buy Macbook
+  preferences:
+    pairwise:
+      - [Wydajnosc, Jakosc, 3]
+      - [Wydajnosc, Styl, 9]
+      - [Wydajnosc, Cena, 3]
+      - [Styl, Cena, 1/6]
+      - [Styl, Jakosc, 1/9]
+      - [Jakosc, Cena, 3]
+  children: 
+    Wydajnosc:
+      preferences: 
+        pairwiseFunction:
+          function(a1, a2) min(9, max(1/9, (100*a1$Ram+a1$Dysk)/(100*a2$Ram+a2$Dysk)))
+      children: *alternatives
+    Styl:
+      preferences: 
+        pairwiseFunction:
+          function(a1, a2) min(9, max(1/9, a1$Ekran/a2$Ekran))
+      children: *alternatives
+    Jakosc:
+      preferences: 
+        pairwiseFunction:
+          function(a1, a2) min(9, max(1/9, a1$Ocena/a2$Ocena))
+      children: *alternatives
+    Cena:
+      preferences: 
+        pairwiseFunction:
+          function(a1, a2) min(9, max(1/9, a1$Cena/a2$Cena))
+      children: *alternatives
+     
