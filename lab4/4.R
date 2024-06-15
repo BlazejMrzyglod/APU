@@ -1,5 +1,6 @@
 data("infert")
 library(magrittr)
+library(dplyr)
 infert3 <- infert %>%
   select(education, age, parity, induced, case, spontaneous)
 
@@ -10,7 +11,6 @@ library(rpart)
 rtree_fit <-rpart(case~.,data1$training)
 plot(rtree_fit)
 text(rtree_fit, use.n = TRUE)
-help(rpart)
 
 
 
@@ -19,25 +19,16 @@ help(rpart)
 
 
 
-# Load necessary libraries
+
 library(mlr)
-
 load("Macbooki.csv")
 Macbooki
-# Convert the response variable to a factor
-Macbooki$nazwa <- as.factor(Macbooki$nazwa)
-
-# Define the classification task
+Macbooki$ekran <- as.factor(Macbooki$ekran)
 task <- makeClassifTask(id = "macbooki", data = Macbooki, target = "ocena")
 learner <- makeLearner("classif.randomForest", predict.type = "response")
-# Perform 5-fold cross-validation
 rdesc <- makeResampleDesc("CV",stratify = F,iters=5)
-# Choose a learner (e.g., Random Forest)
-lrns <- makeLearners(c("rpart", "C50","rFerns",
+lrns <- makeLearners(c("rpart","rFerns",
                        "randomForest"), type = "classif")
-
-
-# Train the model and evaluate performance using cross-validation
 r <- resample(learner, task, rdesc)
 porownanie <-benchmark(learners = lrns, tasks=task, resampling=cv5)
 
@@ -46,3 +37,4 @@ model <- train(learner, task)
 predictions <- predict(model, newdata = Macbooki)
 print(calculateConfusionMatrix(predictions))
 performance(predictions)
+plotBMRBoxplots(porownanie)
